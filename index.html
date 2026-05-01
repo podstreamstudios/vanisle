@@ -4,10 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vansile | Crooney</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=DM+Mono:wght@300;400;500&family=Archivo:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --ink: #0e0d0b;
+            --parchment: #f2ede4;
+            --cream: #faf7f2;
+            --mid: #7a7268;
+            --rule: #d4cdc0;
+        }
+        body {
+            background: var(--cream);
+            color: var(--ink);
+            font-family: 'Archivo', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+        }
+        .tag {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .desc {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(17px, 2vw, 21px);
+            font-weight: 300;
+            line-height: 1.65;
+            color: #2a2820;
+            max-width: 540px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .rule {
+            width: 48px;
+            height: 2px;
+            background: var(--ink);
+            margin-bottom: 40px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-links a {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--mid);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--ink);
+            border-bottom-color: var(--ink);
+        }
+        footer {
+            position: fixed;
+            bottom: 24px;
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            color: var(--rule);
+        }
+    </style>
 </head>
 <body>
-    <h1>vansile.crooney.ca</h1>
-    <p>Coming soon.</p>
+    <div class="tag">crooney.ca</div>
+    <h1>Vansile</h1>
+    <div class="desc">Creative production and visual storytelling.</div>
+    <div class="rule"></div>
+    <nav class="nav-links">
+        <a href="https://lab.crooney.ca">Lab</a>
+        <a href="https://phd.crooney.ca">PhD</a>
+        <a href="https://projects.crooney.ca">Projects</a>
+        <a href="https://soundtrap.crooney.ca">Soundtrap</a>
+        <a href="https://aries.crooney.ca">Aries</a>
+    </nav>
+    <footer>vansile.crooney.ca</footer>
 </body>
 </html>
