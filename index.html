@@ -327,6 +327,35 @@
             line-height: 1.7;
         }
 
+        /* ── COMPOSITIONS ── */
+        .compositions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            background: var(--rule);
+            margin: 32px 0;
+        }
+        .composition-card {
+            background: var(--cream);
+            padding: 32px;
+        }
+        .composition-title {
+            font-family: var(--serif);
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+        }
+        .composition-title em {
+            font-style: italic;
+            color: var(--mid);
+        }
+        .composition-desc {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #2a2820;
+        }
+
         /* ── REVEAL ── */
         .reveal {
             opacity: 0;
@@ -343,6 +372,7 @@
             section { padding: 48px 24px; }
             .layers-grid { grid-template-columns: 1fr; }
             .opp-grid { grid-template-columns: 1fr; }
+            .compositions-grid { grid-template-columns: 1fr; }
             .flow { grid-template-columns: 1fr; gap: 0; }
             .flow-arrow { transform: rotate(90deg); text-align: center; padding: 8px 0; }
             footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
@@ -460,6 +490,24 @@
     </div>
 </section>
 
+<!-- ── COMPOSITIONS ── -->
+<section>
+    <div class="section-label">Experimental Layer</div>
+    <h2>System <em>compositions</em></h2>
+    <p class="lead">VanIsle layers are composable. Combining them produces new experiential and economic architectures.</p>
+
+    <div class="compositions-grid reveal">
+        <div class="composition-card">
+            <div class="composition-title">IslandCamp <em>&times;</em> VICSS</div>
+            <p class="composition-desc">Car-free camping experiences that embed craft distillery visits, converting place-based experience into export-ready goods.</p>
+        </div>
+        <div class="composition-card">
+            <div class="composition-title">IslandCamp <em>&times;</em> Megaband</div>
+            <p class="composition-desc">Camping systems integrated with distributed cultural performances across Vancouver Island.</p>
+        </div>
+    </div>
+</section>
+
 <!-- ── CONTEXT & INNOVATION ── -->
 <section>
     <div class="section-label">Regional Context</div>
@@ -468,6 +516,13 @@
 
     <div class="section-label" style="margin-top: 40px;">Innovation Layer</div>
     <p class="innovation-note">Developed in collaboration with 1730.ca &mdash; applying coordination across independent systems, data-informed targeting and development, and integration of cultural, logistical, and economic layers.</p>
+</section>
+
+<!-- ── RESEARCH CONTEXT ── -->
+<section>
+    <div class="section-label">Research Context</div>
+    <h2>Systems design &amp; <em>cybernetics</em></h2>
+    <p class="lead">Developed within a systems design and cybernetics research framework &mdash; exploring requisite variety, coordination across independent systems, and place-based experiential economies.</p>
 </section>
 
 <!-- ── OUTCOMES ── -->
