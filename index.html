@@ -1,575 +1,1237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VanIsle | Crooney</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=DM+Mono:wght@300;400;500&family=Archivo:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --ink: #0e0d0b;
-            --parchment: #f2ede4;
-            --cream: #faf7f2;
-            --mid: #7a7268;
-            --rule: #d4cdc0;
-            --serif: 'Cormorant Garamond', Georgia, serif;
-            --mono: 'DM Mono', monospace;
-            --sans: 'Archivo', sans-serif;
-            --culture: #c8692a;
-            --access: #3a6b8a;
-            --craft: #4a7c59;
-        }
-        body {
-            background: var(--cream);
-            color: var(--ink);
-            font-family: var(--sans);
-            font-size: 16px;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VanIsle | Crooney</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Mono:wght@300;400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* ── HEADER ── */
-        header {
-            text-align: center;
-            padding: 80px 24px 60px;
-            border-bottom: 2px solid var(--ink);
-        }
-        .tag {
-            font-family: var(--mono);
-            font-size: 10px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--mid);
-            margin-bottom: 24px;
-        }
-        h1 {
-            font-family: var(--serif);
-            font-size: clamp(42px, 7vw, 72px);
-            font-weight: 300;
-            letter-spacing: -0.02em;
-            margin-bottom: 16px;
-        }
-        .subtitle {
-            font-family: var(--serif);
-            font-size: clamp(17px, 2vw, 21px);
-            font-weight: 300;
-            line-height: 1.65;
-            color: #2a2820;
-            max-width: 640px;
-            margin: 0 auto 32px;
-        }
-        .intro {
-            font-size: 15px;
-            line-height: 1.75;
-            color: #2a2820;
-            max-width: 640px;
-            margin: 0 auto;
-        }
+    :root {
+      --ink:       #0e0d0b;
+      --parchment: #f2ede4;
+      --cream:     #faf7f2;
+      --warm-mid:  #7a7268;
+      --rule:      #d4cdc0;
+      --faint:     #e8e2d8;
+      --serif:     'Cormorant Garamond', Georgia, serif;
+      --baskerville: 'Libre Baskerville', Georgia, serif;
+      --mono:      'DM Mono', monospace;
 
-        /* ── SECTIONS ── */
-        section {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 64px 48px;
-        }
-        .section-label {
-            font-family: var(--mono);
-            font-size: 10px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--mid);
-            margin-bottom: 16px;
-        }
-        h2 {
-            font-family: var(--serif);
-            font-size: clamp(28px, 4vw, 40px);
-            font-weight: 400;
-            letter-spacing: -0.01em;
-            margin-bottom: 20px;
-        }
-        h2 em { font-style: italic; }
-        .lead {
-            font-family: var(--serif);
-            font-size: clamp(17px, 1.8vw, 21px);
-            font-weight: 300;
-            line-height: 1.65;
-            color: #2a2820;
-            max-width: 720px;
-            margin-bottom: 28px;
-        }
-        section + section { border-top: 1px solid var(--rule); }
+      /* RPV layer colours — muted, analytical */
+      --r-color:   #3a5a78;   /* Resources — slate blue */
+      --p-color:   #5a4a2a;   /* Processes — warm umber */
+      --v-color:   #3a5a3a;   /* Values — forest */
 
-        /* ── OPPORTUNITY GRID ── */
-        .opp-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            background: var(--rule);
-            margin: 32px 0;
-        }
-        .opp-cell {
-            background: var(--cream);
-            padding: 28px;
-        }
-        .opp-cell-label {
-            font-family: var(--mono);
-            font-size: 10px;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--mid);
-            margin-bottom: 16px;
-        }
-        .opp-cell ul {
-            list-style: none;
-            padding: 0;
-        }
-        .opp-cell li {
-            font-size: 15px;
-            line-height: 1.6;
-            color: #2a2820;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(212,205,192,0.4);
-        }
-        .opp-cell li:last-child { border-bottom: none; }
-        .opp-cell li::before {
-            content: '·';
-            margin-right: 10px;
-            color: var(--mid);
-        }
+      /* accent */
+      --accent:    #8b3a2a;   /* deep terracotta — the corridor, the island */
+    }
 
-        /* ── THREE LAYERS ── */
-        .layers-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            background: var(--rule);
-            margin: 32px 0;
-        }
-        .layer-card {
-            background: var(--cream);
-            padding: 32px;
-        }
-        .layer-accent {
-            width: 100%;
-            height: 3px;
-            margin-bottom: 20px;
-        }
-        .layer-accent.culture { background: var(--culture); }
-        .layer-accent.access { background: var(--access); }
-        .layer-accent.craft { background: var(--craft); }
-        .layer-tag {
-            font-family: var(--mono);
-            font-size: 10px;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-        .layer-tag.culture { color: var(--culture); }
-        .layer-tag.access { color: var(--access); }
-        .layer-tag.craft { color: var(--craft); }
-        .layer-name {
-            font-family: var(--serif);
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 4px;
-        }
-        .layer-initiative {
-            font-family: var(--mono);
-            font-size: 11px;
-            color: var(--mid);
-            margin-bottom: 16px;
-        }
-        .layer-desc {
-            font-size: 15px;
-            line-height: 1.7;
-            color: #2a2820;
-            margin-bottom: 20px;
-        }
-        .layer-points {
-            list-style: none;
-            padding: 0;
-        }
-        .layer-points li {
-            font-size: 14px;
-            line-height: 1.55;
-            color: #3a3830;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(212,205,192,0.4);
-        }
-        .layer-points li:last-child { border-bottom: none; }
+    html { scroll-behavior: smooth; }
 
-        /* ── FLOW ── */
-        .flow {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr auto 1fr;
-            gap: 0;
-            align-items: center;
-            margin: 40px 0;
-        }
-        .flow-step {
-            background: var(--parchment);
-            border: 1px solid var(--rule);
-            padding: 24px;
-        }
-        .flow-num {
-            font-family: var(--mono);
-            font-size: 10px;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--mid);
-            margin-bottom: 8px;
-        }
-        .flow-title {
-            font-family: var(--sans);
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-        .flow-desc {
-            font-size: 13px;
-            line-height: 1.6;
-            color: #3a3830;
-        }
-        .flow-arrow {
-            font-family: var(--serif);
-            font-size: 24px;
-            color: var(--rule);
-            padding: 0 12px;
-        }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--baskerville);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        /* ── OUTCOMES ── */
-        .outcomes-list {
-            list-style: none;
-            padding: 0;
-            max-width: 640px;
-        }
-        .outcomes-list li {
-            font-size: 15px;
-            line-height: 1.6;
-            color: #2a2820;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--rule);
-        }
-        .outcomes-list li:last-child { border-bottom: none; }
+    /* ── UTILITIES ── */
+    .mono {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .rule-top    { border-top: 1px solid var(--rule); }
+    .rule-top-2  { border-top: 2px solid var(--ink); }
+    .rule-bottom { border-bottom: 1px solid var(--rule); }
 
-        /* ── CTA ── */
-        .cta {
-            background: var(--ink);
-            padding: 48px;
-            margin: 40px 0 0;
-        }
-        .cta-label {
-            font-family: var(--mono);
-            font-size: 9px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--mid);
-            margin-bottom: 16px;
-        }
-        .cta-list {
-            list-style: none;
-            padding: 0;
-        }
-        .cta-list li {
-            font-size: 15px;
-            line-height: 1.6;
-            color: rgba(242,237,228,0.75);
-            padding: 8px 0;
-            border-bottom: 1px solid #1e1c18;
-        }
-        .cta-list li:last-child { border-bottom: none; }
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        /* ── FOOTER ── */
-        footer {
-            border-top: 2px solid var(--ink);
-            padding: 32px 48px;
-            max-width: 1080px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .footer-nav {
-            display: flex;
-            gap: 24px;
-        }
-        .footer-nav a {
-            font-family: var(--mono);
-            font-size: 11px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--mid);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            padding-bottom: 2px;
-            transition: border-color 0.2s, color 0.2s;
-        }
-        .footer-nav a:hover {
-            color: var(--ink);
-            border-bottom-color: var(--ink);
-        }
-        .footer-domain {
-            font-family: var(--mono);
-            font-size: 10px;
-            letter-spacing: 0.12em;
-            color: var(--rule);
-        }
+    /* ── SITE NAV ── */
+    nav.site-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--rule);
+    }
+    nav.site-nav .home {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      text-decoration: none;
+    }
+    nav.site-nav .home:hover { color: var(--ink); }
+    nav.site-nav .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    nav.site-nav .nav-links a {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    nav.site-nav .nav-links a:hover { color: var(--ink); border-color: var(--ink); }
 
-        /* ── INNOVATION ── */
-        .innovation-note {
-            font-family: var(--mono);
-            font-size: 12px;
-            color: var(--mid);
-            margin-top: 24px;
-            line-height: 1.7;
-        }
+    /* ── HEADER ── */
+    header {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 80px 48px 72px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .header-eyebrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-bottom: 28px;
+    }
+    .header-eyebrow span {
+      color: var(--accent);
+      margin-left: 12px;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      margin-bottom: 36px;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--warm-mid);
+    }
+    .header-thesis {
+      font-family: var(--serif);
+      font-size: clamp(19px, 2.2vw, 24px);
+      font-weight: 400;
+      line-height: 1.55;
+      max-width: 680px;
+      color: #1e1c18;
+      margin-bottom: 40px;
+    }
+    .header-meta {
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .meta-item {}
+    .meta-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-bottom: 4px;
+    }
+    .meta-value {
+      font-family: var(--baskerville);
+      font-size: 13px;
+      color: var(--ink);
+    }
 
-        /* ── COMPOSITIONS ── */
-        .compositions-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            background: var(--rule);
-            margin: 32px 0;
-        }
-        .composition-card {
-            background: var(--cream);
-            padding: 32px;
-        }
-        .composition-title {
-            font-family: var(--serif);
-            font-size: 24px;
-            font-weight: 400;
-            letter-spacing: -0.01em;
-            margin-bottom: 12px;
-        }
-        .composition-title em {
-            font-style: italic;
-            color: var(--mid);
-        }
-        .composition-desc {
-            font-size: 15px;
-            line-height: 1.7;
-            color: #2a2820;
-        }
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 72px 48px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    h2 em { font-style: italic; }
+    .lead {
+      font-family: var(--serif);
+      font-size: clamp(17px, 1.8vw, 20px);
+      font-weight: 300;
+      line-height: 1.65;
+      color: #2a2820;
+      max-width: 720px;
+      margin-bottom: 40px;
+    }
+    p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #2a2820;
+      max-width: 680px;
+      margin-bottom: 20px;
+    }
 
-        /* ── REVEAL ── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    /* ── WHERE CONSTRAINT BOX ── */
+    .constraint-frame {
+      border: 1px solid var(--ink);
+      padding: 40px 48px;
+      margin: 40px 0;
+      position: relative;
+    }
+    .constraint-frame::before {
+      content: 'The Founding Constraint';
+      position: absolute;
+      top: -10px;
+      left: 32px;
+      background: var(--cream);
+      padding: 0 10px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+    }
+    .constraint-hierarchy {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0;
+      max-width: 640px;
+    }
+    .ch-row {
+      display: contents;
+    }
+    .ch-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 10px 28px 10px 0;
+      white-space: nowrap;
+      border-bottom: 1px solid var(--faint);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ch-label:last-of-type, .ch-label ~ .ch-text:last-of-type { border-bottom: none; }
+    .ch-arrow {
+      color: var(--rule);
+      font-size: 14px;
+    }
+    .ch-text {
+      font-family: var(--baskerville);
+      font-size: 14px;
+      line-height: 1.6;
+      color: #2a2820;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--faint);
+    }
+    .ch-text:last-child { border-bottom: none; }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 860px) {
-            section { padding: 48px 24px; }
-            .layers-grid { grid-template-columns: 1fr; }
-            .opp-grid { grid-template-columns: 1fr; }
-            .compositions-grid { grid-template-columns: 1fr; }
-            .flow { grid-template-columns: 1fr; gap: 0; }
-            .flow-arrow { transform: rotate(90deg); text-align: center; padding: 8px 0; }
-            footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
-            .footer-nav { flex-wrap: wrap; justify-content: center; }
-        }
-    </style>
+    /* ── RPV DIAGRAM ── */
+    .rpv-frame {
+      margin: 48px 0 0;
+      position: relative;
+    }
+    .rpv-header-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 2px;
+    }
+    .rpv-axis-label {
+      grid-column: 1;
+      display: flex;
+      align-items: center;
+    }
+    .rpv-col-head {
+      padding: 16px 24px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border-top: 3px solid var(--ink);
+      border-bottom: 1px solid var(--faint);
+    }
+    .rpv-col-head.r { border-top-color: var(--r-color); color: var(--r-color); }
+    .rpv-col-head.p { border-top-color: var(--p-color); color: var(--p-color); }
+    .rpv-col-head.v { border-top-color: var(--v-color); color: var(--v-color); }
+
+    .rpv-body {
+      display: grid;
+      grid-template-columns: 120px 1fr 1fr 1fr;
+      gap: 2px;
+    }
+    .rpv-row-label {
+      background: var(--parchment);
+      border-right: 1px solid var(--rule);
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+    }
+    .rpv-row-label .rl-num {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+    }
+    .rpv-row-label .rl-name {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.3;
+    }
+    .rpv-cell {
+      background: var(--parchment);
+      padding: 24px;
+      font-size: 13px;
+      line-height: 1.65;
+      color: #2a2820;
+      min-height: 120px;
+    }
+    .rpv-cell ul {
+      list-style: none;
+      padding: 0;
+    }
+    .rpv-cell ul li {
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(212,205,192,0.5);
+      padding-left: 14px;
+      position: relative;
+    }
+    .rpv-cell ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--rule);
+    }
+    .rpv-cell ul li:last-child { border-bottom: none; }
+    .rpv-cell.r-tint { background: rgba(58,90,120,0.05); }
+    .rpv-cell.p-tint { background: rgba(90,74,42,0.05); }
+    .rpv-cell.v-tint { background: rgba(58,90,58,0.05); }
+
+    /* autopoietic note */
+    .autopoietic-note {
+      border: 1px dashed var(--rule);
+      padding: 20px 24px;
+      margin-top: 24px;
+      max-width: 100%;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .an-symbol {
+      font-family: var(--serif);
+      font-size: 28px;
+      color: var(--warm-mid);
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .an-text {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      line-height: 1.8;
+      color: var(--warm-mid);
+    }
+    .an-text strong {
+      color: var(--ink);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 9px;
+    }
+
+    /* ── CORRIDOR ── */
+    .corridor-diagram {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 40px 0;
+      border: 1px solid var(--rule);
+      overflow: hidden;
+    }
+    .corridor-node {
+      flex: 1;
+      padding: 32px 28px;
+      background: var(--parchment);
+    }
+    .corridor-node.primary { background: var(--ink); color: var(--cream); }
+    .cn-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .corridor-node .cn-label { color: var(--warm-mid); }
+    .corridor-node.primary .cn-label { color: rgba(242,237,228,0.5); }
+    .cn-name {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .cn-desc {
+      font-size: 12px;
+      line-height: 1.65;
+      color: #3a3830;
+    }
+    .corridor-node.primary .cn-desc { color: rgba(242,237,228,0.7); }
+    .corridor-arrow {
+      padding: 0 16px;
+      font-family: var(--serif);
+      font-size: 28px;
+      color: var(--rule);
+      flex-shrink: 0;
+      background: var(--cream);
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── INSTITUTIONS ── */
+    .inst-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--rule);
+      margin: 40px 0;
+    }
+    .inst-card {
+      background: var(--cream);
+      padding: 36px;
+    }
+    .inst-card-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-bottom: 4px;
+    }
+    .inst-card-owner {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding: 3px 8px;
+      display: inline-block;
+    }
+    .inst-card-owner.direct { background: var(--ink); color: var(--cream); }
+    .inst-card-owner.mml { background: var(--faint); color: var(--warm-mid); }
+    .inst-card h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .inst-card .inst-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--warm-mid);
+      margin-bottom: 16px;
+    }
+    .inst-card p {
+      font-size: 14px;
+      line-height: 1.75;
+      max-width: none;
+    }
+
+    /* ── FIELD SITE CLAIM ── */
+    .claim-block {
+      border-left: 3px solid var(--ink);
+      padding: 32px 40px;
+      margin: 40px 0;
+      background: var(--parchment);
+    }
+    .claim-block blockquote {
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .claim-attribution {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+    }
+
+    /* ── INTERVENTION ── */
+    .intervention-row {
+      display: grid;
+      grid-template-columns: 1fr 64px 1fr;
+      gap: 0;
+      align-items: center;
+      margin: 40px 0;
+      border: 1px solid var(--rule);
+    }
+    .int-panel {
+      padding: 36px;
+    }
+    .int-panel-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-bottom: 12px;
+    }
+    .int-panel h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .int-panel p { font-size: 14px; line-height: 1.75; max-width: none; }
+    .int-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--faint);
+      align-self: stretch;
+      border-left: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
+    }
+    .int-divider span {
+      font-family: var(--serif);
+      font-size: 24px;
+      color: var(--warm-mid);
+      writing-mode: vertical-rl;
+      letter-spacing: 4px;
+    }
+
+    /* ── COMPARISON NOTE ── */
+    .compare-strip {
+      background: var(--ink);
+      padding: 48px;
+      margin: 40px 0 0;
+      color: var(--cream);
+    }
+    .compare-strip .cs-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(242,237,228,0.4);
+      margin-bottom: 20px;
+    }
+    .compare-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .compare-site {
+      border-left: 2px solid rgba(242,237,228,0.15);
+      padding-left: 20px;
+    }
+    .compare-site h4 {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 6px;
+      color: var(--cream);
+    }
+    .compare-site p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(242,237,228,0.65);
+      max-width: none;
+    }
+    .compare-vs {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: rgba(242,237,228,0.25);
+      text-align: center;
+    }
+    .compare-strip .cs-note {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      line-height: 1.8;
+      color: rgba(242,237,228,0.5);
+      border-top: 1px solid rgba(242,237,228,0.1);
+      padding-top: 20px;
+      margin-top: 8px;
+    }
+
+    /* ── FIND THE WORK ── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--rule);
+      margin: 40px 0;
+    }
+    .work-card {
+      background: var(--cream);
+      padding: 32px;
+    }
+    .work-card-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-bottom: 16px;
+    }
+    .work-card h3 {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .work-card p { font-size: 13px; line-height: 1.75; max-width: none; margin-bottom: 20px; }
+    .work-card a.work-link {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .work-card a.work-link:hover { border-color: var(--ink); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 2px solid var(--ink);
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+    .footer-nav a {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--ink); border-color: var(--ink); }
+    .footer-domain {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--rule);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      nav.site-nav { padding: 16px 24px; }
+      nav.site-nav .nav-links { gap: 16px; }
+      header, .section { padding-left: 24px; padding-right: 24px; }
+      .rpv-header-row,
+      .rpv-body {
+        grid-template-columns: 80px 1fr;
+        grid-template-rows: auto;
+      }
+      .rpv-col-head { display: none; }
+      .rpv-col-head:first-of-type { display: block; }
+      /* simplify: stack RPV rows on mobile */
+      .rpv-header-row { display: none; }
+      .rpv-body { grid-template-columns: 1fr; }
+      .rpv-row-label { border-right: none; border-bottom: 1px solid var(--rule); flex-direction: row; align-items: center; gap: 12px; }
+      .rpv-cell { min-height: unset; }
+      .rpv-cell.r-tint, .rpv-cell.p-tint, .rpv-cell.v-tint { border-left: 3px solid; }
+      .rpv-cell.r-tint { border-color: var(--r-color); }
+      .rpv-cell.p-tint { border-color: var(--p-color); }
+      .rpv-cell.v-tint { border-color: var(--v-color); }
+      .inst-grid { grid-template-columns: 1fr; }
+      .compare-row { grid-template-columns: 1fr; }
+      .compare-vs { display: none; }
+      .work-grid { grid-template-columns: 1fr; }
+      .intervention-row { grid-template-columns: 1fr; }
+      .int-divider { padding: 16px; align-self: auto; }
+      .int-divider span { writing-mode: horizontal-tb; letter-spacing: 0; }
+      .corridor-diagram { flex-direction: column; }
+      .corridor-arrow { padding: 8px; transform: rotate(90deg); }
+      footer { padding: 24px; }
+      .compare-strip { padding: 32px 24px; }
+    }
+  </style>
 </head>
 <body>
 
+<!-- ── NAV ── -->
+<nav class="site-nav">
+  <a href="https://crooney.ca" class="home">crooney.ca</a>
+  <ul class="nav-links">
+    <li><a href="https://lab.crooney.ca">Lab</a></li>
+    <li><a href="https://projects.crooney.ca">Projects</a></li>
+    <li><a href="https://phd.crooney.ca">PhD</a></li>
+    <li><a href="https://aries.crooney.ca">Aries</a></li>
+    <li><a href="https://soundtrap.crooney.ca">Soundtrap</a></li>
+  </ul>
+</nav>
+
 <!-- ── HEADER ── -->
 <header>
-    <div class="tag">crooney.ca</div>
-    <h1>VanIsle</h1>
-    <div class="subtitle">A regional system for developing culture, access, and economic value on Vancouver Island.</div>
-    <p class="intro">VanIsle is a coordinated set of initiatives designed to develop Vancouver Island as a connected system &mdash; linking cultural activity, visitor access, and export-ready products.</p>
+  <div class="header-eyebrow reveal visible">
+    Field Site · MML Director of Research
+    <span>Lens 1 · RPV Analysis</span>
+  </div>
+  <h1 class="reveal visible">Van<em>Isle</em></h1>
+  <p class="header-thesis reveal visible">
+    Vancouver Island is not a remote work location. It is a bounded innovation ecosystem — 
+    mappable, legible, and generative precisely because of its geographic constraints. 
+    This is the primary field site for applied Location-Based Experience research 
+    conducted under the Multimodal Media Lab.
+  </p>
+  <div class="header-meta reveal visible">
+    <div class="meta-item">
+      <div class="meta-label">Analytical Framework</div>
+      <div class="meta-value">Christensen — RPV Theory</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Comparative Site</div>
+      <div class="meta-value">Las Vegas (vegas.crooney.ca)</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Institutional Role</div>
+      <div class="meta-value">MML · Director of Research (LBE)</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Geographic Scope</div>
+      <div class="meta-value">Campbell River ↔ Victoria</div>
+    </div>
+  </div>
 </header>
 
-<!-- ── OPPORTUNITY ── -->
-<section>
-    <div class="section-label">The Opportunity</div>
-    <h2>Strong assets. <em>Fragmented systems.</em></h2>
-    <p class="lead">Vancouver Island has the raw ingredients for a connected regional economy. They just aren't wired together yet.</p>
+<!-- ── THE FOUNDING CONSTRAINT ── -->
+<div class="section reveal">
+  <div class="section-label">§ 1 · The Geographic Constraint</div>
+  <h2>WHERE determines everything <em>else</em></h2>
+  <p class="lead">
+    The Vancouver Island field site is not chosen despite its constraints — it is chosen 
+    because of them. Geographic boundedness is the research value proposition.
+  </p>
 
-    <div class="opp-grid reveal">
-        <div class="opp-cell">
-            <div class="opp-cell-label">Assets</div>
-            <ul>
-                <li>Strong cultural communities</li>
-                <li>High tourism demand</li>
-                <li>Premium craft production</li>
-                <li>Proximity to major markets such as Vancouver</li>
-            </ul>
-        </div>
-        <div class="opp-cell">
-            <div class="opp-cell-label">Gaps</div>
-            <ul>
-                <li>Cultural activity is fragmented</li>
-                <li>Access is inconsistent without a vehicle</li>
-                <li>Export pathways are underdeveloped</li>
-            </ul>
-        </div>
+  <div class="constraint-frame">
+    <div class="constraint-hierarchy">
+      <div class="ch-label"><span class="ch-arrow">01</span> WHERE</div>
+      <div class="ch-text">
+        <strong>Vancouver Island</strong> — bounded by water, knowable in scale, 
+        distinct from Vancouver in tourism infrastructure, cultural rhythm, and community dynamics. 
+        The ferry crossing is itself an LBE design problem.
+      </div>
+
+      <div class="ch-label"><span class="ch-arrow">↓ 02</span> WHO</div>
+      <div class="ch-text">
+        The people available and connected within this geography: regional venue operators, 
+        craft producers, community institutions, NIC/CARTI, Island-based musicians and audiences.
+      </div>
+
+      <div class="ch-label"><span class="ch-arrow">↓ 03</span> WHAT</div>
+      <div class="ch-text">
+        The tools, formats, and registers that work within these constraints: the lounge show, 
+        the craft run, the community event, the seasonal tourism rhythm. 
+        The |F|D|S|L| framework tested at community scale.
+      </div>
+
+      <div class="ch-label"><span class="ch-arrow">↓ 04</span> HOW</div>
+      <div class="ch-text">
+        The solo performer / practitioner-researcher model. Doctor Obscurity studying the variety 
+        requirements of a regional experiential economy from the inside — not from Vancouver.
+      </div>
     </div>
-</section>
+  </div>
 
-<!-- ── THE SYSTEM ── -->
-<section>
-    <div class="section-label">The System</div>
-    <h2>Three coordinated <em>layers</em></h2>
-    <p class="lead">VanIsle operates across culture, access, and craft &mdash; each layer reinforcing the others.</p>
+  <p>
+    In Beer's Viable System Model, the environment generates the variety that the system must 
+    have requisite variety to absorb. Vancouver Island's bounded geography is not a liability — 
+    it is a designed research constraint that makes the field site knowable, manageable, 
+    and legible to regional funders and hospitality partners.
+  </p>
+  <p>
+    Campbell River to Vancouver is not a career limitation. It is the corridor that defines 
+    the scale of the practice: deep local expertise rather than global ambition — 
+    which is a more defensible and more replicable research position.
+  </p>
+</div>
 
-    <div class="layers-grid reveal">
-        <div class="layer-card">
-            <div class="layer-accent culture"></div>
-            <div class="layer-tag culture">Cultural Layer</div>
-            <div class="layer-name">Megaband</div>
-            <div class="layer-initiative">Vancouver Island Region</div>
-            <p class="layer-desc">A large-scale, coordinated performance system that connects musicians and communities across the region.</p>
-            <ul class="layer-points">
-                <li>Builds shared cultural visibility</li>
-                <li>Engages participants and audiences</li>
-                <li>Creates region-wide presence</li>
-            </ul>
-        </div>
-        <div class="layer-card">
-            <div class="layer-accent access"></div>
-            <div class="layer-tag access">Access Layer</div>
-            <div class="layer-name">IslandCamp</div>
-            <div class="layer-initiative">Car-free travel system</div>
-            <p class="layer-desc">A car-free travel and equipment system enabling visitors to explore Vancouver Island without bringing a vehicle.</p>
-            <ul class="layer-points">
-                <li>Reduces travel friction</li>
-                <li>Enables mobility across the region</li>
-                <li>Connects arrival points to destinations</li>
-            </ul>
-        </div>
-        <div class="layer-card">
-            <div class="layer-accent craft"></div>
-            <div class="layer-tag craft">Product Layer</div>
-            <div class="layer-name">VanIsle Spirits</div>
-            <div class="layer-initiative">VICSS</div>
-            <p class="layer-desc">An export-focused initiative positioning Vancouver Island craft spirits in global markets.</p>
-            <ul class="layer-points">
-                <li>Develops international demand</li>
-                <li>Supports regional producers</li>
-                <li>Builds economic value</li>
-            </ul>
-        </div>
+<!-- ── RPV MAP ── -->
+<div class="section reveal">
+  <div class="section-label">§ 2 · The RPV Map</div>
+  <h2>Vancouver Island as an <em>innovation ecosystem</em></h2>
+  <p class="lead">
+    Christensen's RPV framework — Resources, Processes, Values — applied not to a firm 
+    but to a regional experiential economy. Three mutually constitutive layers, 
+    each shaping and reproducing the others.
+  </p>
+
+  <div class="rpv-frame">
+    <!-- Column headers -->
+    <div class="rpv-header-row">
+      <div class="rpv-axis-label"></div>
+      <div class="rpv-col-head r">Resources<br><span style="font-size:9px;opacity:0.6;text-transform:none;letter-spacing:0">What the ecosystem has</span></div>
+      <div class="rpv-col-head p">Processes<br><span style="font-size:9px;opacity:0.6;text-transform:none;letter-spacing:0">How the ecosystem operates</span></div>
+      <div class="rpv-col-head v">Values<br><span style="font-size:9px;opacity:0.6;text-transform:none;letter-spacing:0">What the ecosystem prioritizes</span></div>
     </div>
-</section>
 
-<!-- ── HOW IT WORKS ── -->
-<section>
-    <div class="section-label">How It Works</div>
-    <h2>Culture &rarr; Access &rarr; <em>Value</em></h2>
-    <p class="lead">VanIsle links these layers into a single flow.</p>
+    <!-- Rows -->
+    <div class="rpv-body">
 
-    <div class="flow reveal">
-        <div class="flow-step">
-            <div class="flow-num">01</div>
-            <div class="flow-title">Culture generates attention</div>
-            <div class="flow-desc">Megaband creates visibility and engagement across the region.</div>
-        </div>
-        <div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">
-            <div class="flow-num">02</div>
-            <div class="flow-title">Access converts interest into presence</div>
-            <div class="flow-desc">IslandCamp enables visitors to arrive and explore without a vehicle.</div>
-        </div>
-        <div class="flow-arrow">&rarr;</div>
-        <div class="flow-step">
-            <div class="flow-num">03</div>
-            <div class="flow-title">Craft converts presence into value</div>
-            <div class="flow-desc">VICSS develops export demand and market growth.</div>
-        </div>
-    </div>
-</section>
-
-<!-- ── COMPOSITIONS ── -->
-<section>
-    <div class="section-label">Experimental Layer</div>
-    <h2>System <em>compositions</em></h2>
-    <p class="lead">VanIsle layers are composable. Combining them produces new experiential and economic architectures.</p>
-
-    <div class="compositions-grid reveal">
-        <div class="composition-card">
-            <div class="composition-title">IslandCamp <em>&times;</em> VICSS</div>
-            <p class="composition-desc">Car-free camping experiences that embed craft distillery visits, converting place-based experience into export-ready goods.</p>
-        </div>
-        <div class="composition-card">
-            <div class="composition-title">IslandCamp <em>&times;</em> Megaband</div>
-            <p class="composition-desc">Camping systems integrated with distributed cultural performances across Vancouver Island.</p>
-        </div>
-    </div>
-</section>
-
-<!-- ── CONTEXT & INNOVATION ── -->
-<section>
-    <div class="section-label">Regional Context</div>
-    <h2>Vancouver Island, <em>British Columbia</em></h2>
-    <p class="lead">Grounded in Vancouver Island with proximity to Vancouver and access to international markets.</p>
-
-    <div class="section-label" style="margin-top: 40px;">Innovation Layer</div>
-    <p class="innovation-note">Developed in collaboration with 1730.ca &mdash; applying coordination across independent systems, data-informed targeting and development, and integration of cultural, logistical, and economic layers.</p>
-</section>
-
-<!-- ── RESEARCH CONTEXT ── -->
-<section>
-    <div class="section-label">Research Context</div>
-    <h2>Systems design &amp; <em>cybernetics</em></h2>
-    <p class="lead">Developed within a systems design and cybernetics research framework &mdash; exploring requisite variety, coordination across independent systems, and place-based experiential economies.</p>
-</section>
-
-<!-- ── OUTCOMES ── -->
-<section>
-    <div class="section-label">Expected Outcomes</div>
-    <h2>What this <em>produces</em></h2>
-
-    <ul class="outcomes-list reveal">
-        <li>Increased regional visibility and participation</li>
-        <li>Improved visitor access without vehicle dependency</li>
-        <li>Growth in export-ready products and international markets</li>
-        <li>A scalable model for regional development</li>
-    </ul>
-
-    <div class="cta reveal">
-        <div class="cta-label">Get Involved</div>
-        <ul class="cta-list">
-            <li>Partner across culture, tourism, or industry</li>
-            <li>Explore collaboration opportunities</li>
-            <li>Support development and deployment</li>
+      <!-- Row 1: Geography -->
+      <div class="rpv-row-label">
+        <div class="rl-num">01</div>
+        <div class="rl-name">Geography &amp;<br>Scale</div>
+      </div>
+      <div class="rpv-cell r-tint">
+        <ul>
+          <li>Island geography — bounded by water</li>
+          <li>Campbell River ↔ Victoria corridor (~500km)</li>
+          <li>Ferry crossings as defined entry/exit points</li>
+          <li>Distinct micro-regions with own tourism identities</li>
+          <li>Proximity to Vancouver (90 min ferry)</li>
         </ul>
+      </div>
+      <div class="rpv-cell p-tint">
+        <ul>
+          <li>Seasonal operating rhythms (summer peak / winter local)</li>
+          <li>Multi-stop itinerary design as default visitor pattern</li>
+          <li>Car-dependent mobility as constraint on access design</li>
+          <li>Regional supply chains (local producers → local venues)</li>
+        </ul>
+      </div>
+      <div class="rpv-cell v-tint">
+        <ul>
+          <li>Place-based authenticity — the Island as origin story</li>
+          <li>Community scale as the legitimate operating unit</li>
+          <li>Seasonal slowdown as renewal, not failure</li>
+          <li>Bounded geography as identity, not limitation</li>
+        </ul>
+      </div>
+
+      <!-- Row 2: Cultural -->
+      <div class="rpv-row-label">
+        <div class="rl-num">02</div>
+        <div class="rl-name">Cultural<br>Infrastructure</div>
+      </div>
+      <div class="rpv-cell r-tint">
+        <ul>
+          <li>Regional venue ecosystem (lounges, pubs, civic halls)</li>
+          <li>Community musician networks</li>
+          <li>Tourism-adjacent cultural programming</li>
+          <li>Oral/community tradition as cultural substrate</li>
+        </ul>
+      </div>
+      <div class="rpv-cell p-tint">
+        <ul>
+          <li>Community event as primary cultural delivery mechanism</li>
+          <li>Word-of-mouth programming over mass marketing</li>
+          <li>Performer-audience intimacy at lounge scale</li>
+          <li>Seasonal festival structure anchoring the calendar</li>
+        </ul>
+      </div>
+      <div class="rpv-cell v-tint">
+        <ul>
+          <li>Participation over spectatorship</li>
+          <li>The room over the stage</li>
+          <li>Cultural continuity over novelty-chasing</li>
+          <li>Local relevance as the primary criterion</li>
+        </ul>
+      </div>
+
+      <!-- Row 3: Economic -->
+      <div class="rpv-row-label">
+        <div class="rl-num">03</div>
+        <div class="rl-name">Economic<br>Structure</div>
+      </div>
+      <div class="rpv-cell r-tint">
+        <ul>
+          <li>Tourism as primary economic driver</li>
+          <li>Craft production sector (distilleries, food producers, artisans)</li>
+          <li>Small operator dominance — independent venues &amp; producers</li>
+          <li>Regional public institutions (NIC/CARTI, municipalities)</li>
+        </ul>
+      </div>
+      <div class="rpv-cell p-tint">
+        <ul>
+          <li>Tourism season as economic planning unit</li>
+          <li>Owner-operator as primary organizational form</li>
+          <li>Regional collaboration over competitive differentiation</li>
+          <li>Applied research partnerships (Mitacs) as R&amp;D pathway</li>
+        </ul>
+      </div>
+      <div class="rpv-cell v-tint">
+        <ul>
+          <li>Sustainability over scale — viable, not maximum</li>
+          <li>Regional reinvestment as economic legitimacy</li>
+          <li>Independence from major market rhythms</li>
+          <li>Craft quality as the premium signal</li>
+        </ul>
+      </div>
+
+      <!-- Row 4: Innovation -->
+      <div class="rpv-row-label">
+        <div class="rl-num">04</div>
+        <div class="rl-name">Innovation<br>Capacity</div>
+      </div>
+      <div class="rpv-cell r-tint">
+        <ul>
+          <li>NIC / CARTI — applied research institutional anchor</li>
+          <li>Practitioner-researcher embedded in the field site</li>
+          <li>MML Director of Research — LBE research capacity</li>
+          <li>Mitacs as the applied R&amp;D funding mechanism</li>
+        </ul>
+      </div>
+      <div class="rpv-cell p-tint">
+        <ul>
+          <li>Lab → Projects → PhD publication pipeline</li>
+          <li>S/E/E/D cycle: Study → Explore → Evaluate → Design</li>
+          <li>Applied research embedded in live performance context</li>
+          <li>Prototype-in-the-room as primary evaluation method</li>
+        </ul>
+      </div>
+      <div class="rpv-cell v-tint">
+        <ul>
+          <li>Deep local knowledge over broad market coverage</li>
+          <li>The field site as the source of research legitimacy</li>
+          <li>Innovation as ecosystem design, not product launch</li>
+          <li>Replicability through constraint, not scale</li>
+        </ul>
+      </div>
+
+    </div><!-- /rpv-body -->
+  </div><!-- /rpv-frame -->
+
+  <div class="autopoietic-note">
+    <div class="an-symbol">↻</div>
+    <div class="an-text">
+      <strong>Autopoietic note —</strong> These three layers are not independent columns. 
+      In the Vancouver Island ecosystem, Values shape which Resources are recognized as assets 
+      and which Processes are legitimate; available Resources and Processes in turn 
+      reproduce those Values over time. The system produces the conditions for its own continuation. 
+      This is the same logic at regional scale that Maturana &amp; Varela (1980) 
+      describe at the biological: the organization produces itself.
     </div>
-</section>
+  </div>
+</div>
+
+<!-- ── THE CORRIDOR ── -->
+<div class="section reveal">
+  <div class="section-label">§ 3 · The Corridor</div>
+  <h2>Campbell River <em>↔</em> Victoria</h2>
+  <p class="lead">
+    The research corridor is not a commute. It is a structured field site 
+    with distinct variety profiles at each end and a research arc running through the middle.
+  </p>
+
+  <div class="corridor-diagram">
+    <div class="corridor-node">
+      <div class="cn-label">North Island</div>
+      <div class="cn-name">Campbell River</div>
+      <div class="cn-desc">
+        Home base. Community scale, lounge culture, resource sector economy.
+        NIC / CARTI institutional anchor. Maximum practitioner embeddedness.
+        The dock dance, the pub show, the Tuesday regular.
+      </div>
+    </div>
+    <div class="corridor-arrow">↔</div>
+    <div class="corridor-node">
+      <div class="cn-label">Mid-Island</div>
+      <div class="cn-name">Nanaimo · Courtenay</div>
+      <div class="cn-desc">
+        Regional centres. University infrastructure (VIU). 
+        The Comox Valley arts ecosystem. 
+        Mid-corridor testing ground for community-scale LBE interventions.
+      </div>
+    </div>
+    <div class="corridor-arrow">↔</div>
+    <div class="corridor-node primary">
+      <div class="cn-label">South Island</div>
+      <div class="cn-name">Victoria</div>
+      <div class="cn-desc">
+        Provincial capital. Tourism hub. Higher variety, more urban experiential economy.
+        Pacific Design Academy (MML institutional relationship — status TBC).
+        The southern boundary of the field site.
+      </div>
+    </div>
+  </div>
+
+  <p>
+    The ferry crossing from Tsawwassen or Horseshoe Bay is not incidental to the research — 
+    it is the threshold event that marks entry into a geographically bounded experiential economy. 
+    Designing the ferry corridor as an LBE problem is an extension of the field site logic, 
+    not a digression from it.
+  </p>
+</div>
+
+<!-- ── INSTITUTIONS ── -->
+<div class="section reveal">
+  <div class="section-label">§ 4 · Institutional Anchors</div>
+  <h2>Two relationships. <em>Distinct ownership.</em></h2>
+  <p class="lead">
+    Vancouver Island has two institutional research relationships in the ecosystem. 
+    Their ownership lines are different and should not be conflated.
+  </p>
+
+  <div class="inst-grid">
+    <div class="inst-card">
+      <div class="inst-card-label">North Vancouver Island</div>
+      <div class="inst-card-owner direct">Joel Flynn — Direct Relationship</div>
+      <h3>NIC / CARTI</h3>
+      <div class="inst-sub">North Island College · Centre for Applied Research, Technology &amp; Innovation</div>
+      <p>
+        Joel's direct institutional relationship on Vancouver Island — activatable independently 
+        for Mitacs applications and applied research partnerships. The primary applied research 
+        anchor for the northern corridor. Relevant to lab.crooney.ca projects, Mitacs applications, 
+        and the |F|D|S|L| field site work. Campbell River geography makes this 
+        the most immediately activated institutional node.
+      </p>
+    </div>
+    <div class="inst-card">
+      <div class="inst-card-label">South Island · Victoria</div>
+      <div class="inst-card-owner mml">MML Relationship · Status TBC</div>
+      <h3>Pacific Design Academy</h3>
+      <div class="inst-sub">pacificdesignacademy.com · Design education · Victoria BC</div>
+      <p>
+        MML's institutional relationship — not Joel's to activate independently. 
+        Identified as a curriculum partnership opportunity when Joel joined MML; 
+        this connection informed the ARIES certificate curriculum design work. 
+        Current partnership status unclear. Hold until MML clarifies. 
+        Noted here for ecosystem completeness — do not push independently.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ── THE FIELD SITE CLAIM ── -->
+<div class="section reveal">
+  <div class="section-label">§ 5 · The Research Claim</div>
+  <h2>The theoretical <em>proposition</em></h2>
+
+  <div class="claim-block">
+    <blockquote>
+      "Regional experiential economies can be designed as cybernetic operating systems."
+    </blockquote>
+    <div class="claim-attribution">Flynn (forthcoming) · PhD Research · Carleton TIM</div>
+  </div>
+
+  <p>
+    Vancouver Island is the minimum viable version of this claim in practice.
+    The practitioner-researcher, operating as a solo performer across the Campbell River 
+    to Victoria corridor, is simultaneously Doctor Obscurity (studying the variety requirements 
+    of the regional ecosystem), Professor Playlist (designing the experiential architecture), 
+    and George Crooney (deploying the system in the room and generating the feedback 
+    that funds the next R&amp;D cycle).
+  </p>
+  <p>
+    The autopoietic loop runs at lounge scale. The research question is whether that operating 
+    system can be made explicit, replicable, and scalable across the Island's regional economy — 
+    and what becomes visible about experience-intensive innovation when you hold both the 
+    RPV map (Lens 1) and the |F|D|S|L| intervention (Lens 2) simultaneously.
+  </p>
+
+  <!-- Intervention panel -->
+  <div class="intervention-row">
+    <div class="int-panel">
+      <div class="int-panel-label">Lens 1 · MASc / MBA · RPV</div>
+      <h3>The Ecosystem Map</h3>
+      <p>
+        Christensen's RPV framework applied to the Vancouver Island innovation ecosystem. 
+        What resources exist, what processes are legitimate, what values govern the system — 
+        and how those three layers reproduce each other autopoietically. 
+        The diagnostic before the intervention.
+      </p>
+    </div>
+    <div class="int-divider"><span>↔</span></div>
+    <div class="int-panel">
+      <div class="int-panel-label">Lens 2 · PhD · |F|D|S|L|</div>
+      <h3>The Designed Intervention</h3>
+      <p>
+        The |F|D|S|L| experience design framework (Food · Drink · Sound · Light) 
+        as the intentional design schema tested within the RPV-mapped field site.
+        Not derived from RPV — held in productive dialectical tension with it via 
+        Cole's coordinated lenses methodology.
+      </p>
+    </div>
+  </div>
+
+  <p style="font-size:13px; color: var(--warm-mid); font-family: var(--mono); letter-spacing:0.06em; line-height:1.8;">
+    Key lock — RPV maps the ecosystem. |F|D|S|L| is the intervention tested within it. 
+    These are two genuinely distinct lenses (Cole 1996). 
+    Do not present them as a unified framework.
+  </p>
+</div>
+
+<!-- ── COMPARATIVE LOGIC ── -->
+<div class="section reveal" style="border-bottom: none; padding-bottom: 0;">
+  <div class="section-label">§ 6 · The Comparative Design</div>
+  <h2>Vancouver Island <em>↔</em> Las Vegas</h2>
+  <p class="lead">
+    Two self-reproducing RPV configurations, both internally coherent, 
+    operating at opposite ends of the variety spectrum.
+  </p>
+
+  <div class="compare-strip">
+    <div class="cs-label">RPV Configurations — Comparative Field Sites</div>
+    <div class="compare-row">
+      <div class="compare-site">
+        <h4>Vancouver Island · Minimum Viable</h4>
+        <p>
+          <strong style="color:rgba(242,237,228,0.85)">Resources:</strong> bounded geography, 
+          regional producers, community venues, NIC/CARTI, practitioner embeddedness.<br>
+          <strong style="color:rgba(242,237,228,0.85)">Processes:</strong> seasonal rhythms, 
+          owner-operator model, community event format, lounge scale delivery.<br>
+          <strong style="color:rgba(242,237,228,0.85)">Values:</strong> community scale as legitimate unit, 
+          place-based authenticity, sustainability over scale, deep local knowledge.
+        </p>
+      </div>
+      <div class="compare-vs">vs.</div>
+      <div class="compare-site">
+        <h4>Las Vegas · Maximum Variety</h4>
+        <p>
+          <strong style="color:rgba(242,237,228,0.85)">Resources:</strong> capital at scale, 
+          spectacle infrastructure, global talent pipelines, UNLV/Black Fire institutional layer.<br>
+          <strong style="color:rgba(242,237,228,0.85)">Processes:</strong> destination event format, 
+          convention floor logic, the strip show, the celebrity restaurateur model.<br>
+          <strong style="color:rgba(242,237,228,0.85)">Values:</strong> maximum variety as the only 
+          legitimate operating mode, novelty as the primary signal, global ambition as default.
+        </p>
+      </div>
+    </div>
+    <div class="cs-note">
+      Both configurations are internally coherent and autopoietically self-reproducing.
+      Neither is superior. The research question is what becomes visible about 
+      experience-intensive innovation when both field sites are held simultaneously — 
+      Rippee (RPV / innovation systems) and Blau (|F|D|S|L| / culinary experiential design) 
+      operating in Las Vegas from different lenses; the practitioner-researcher holding both 
+      as one person across both field sites.
+      · Full comparative analysis: vegas.crooney.ca (forthcoming)
+    </div>
+  </div>
+</div>
+
+<!-- ── FIND THE WORK ── -->
+<div class="section reveal">
+  <div class="section-label">§ 7 · Find the Work</div>
+  <h2>Where the Van Isle <em>research lives</em></h2>
+  <p class="lead">
+    This page establishes the field site. The work itself is distributed across 
+    three subdomains — exploratory, formalized, and theoretical.
+  </p>
+
+  <div class="work-grid">
+    <div class="work-card">
+      <div class="work-card-label">Exploratory · In the Wild</div>
+      <h3>lab.crooney.ca</h3>
+      <p>
+        Van Isle projects at the Study → Explore stage. 
+        Situated experiments before formalization. 
+        The Doctor Obscurity layer: testing viability of tools, resources, 
+        and knowledge within the bounded field site.
+      </p>
+      <a href="https://lab.crooney.ca" class="work-link">lab.crooney.ca →</a>
+    </div>
+    <div class="work-card">
+      <div class="work-card-label">Formalized · Mitacs</div>
+      <h3>projects.crooney.ca</h3>
+      <p>
+        Lab projects that have cleared the RPV threshold and structured as 
+        Mitacs Accelerate applications: confirmed partners, HQPs, deliverables, 
+        and funding targets. The Professor Playlist layer: designed outputs 
+        from the field site's pools.
+      </p>
+      <a href="https://projects.crooney.ca" class="work-link">projects.crooney.ca →</a>
+    </div>
+    <div class="work-card">
+      <div class="work-card-label">Theoretical Spine</div>
+      <h3>phd.crooney.ca</h3>
+      <p>
+        The doctoral research hub. Vancouver Island as primary field site 
+        for the integrated article thesis. RPV (Lens 1) and |F|D|S|L| (Lens 2) 
+        held in productive dialectical tension across four papers 
+        via Cole's coordinated lenses methodology.
+      </p>
+      <a href="https://phd.crooney.ca" class="work-link">phd.crooney.ca →</a>
+    </div>
+  </div>
+</div>
 
 <!-- ── FOOTER ── -->
 <footer>
-    <nav class="footer-nav">
-        <a href="https://lab.crooney.ca">Lab</a>
-        <a href="https://phd.crooney.ca">PhD</a>
-        <a href="https://projects.crooney.ca">Projects</a>
-        <a href="https://soundtrap.crooney.ca">Soundtrap</a>
-        <a href="https://aries.crooney.ca/overview">Aries</a>
-    </nav>
-    <span class="footer-domain">vanisle.crooney.ca</span>
+  <ul class="footer-nav">
+    <li><a href="https://crooney.ca">crooney.ca</a></li>
+    <li><a href="https://lab.crooney.ca">Lab</a></li>
+    <li><a href="https://projects.crooney.ca">Projects</a></li>
+    <li><a href="https://phd.crooney.ca">PhD</a></li>
+    <li><a href="https://aries.crooney.ca">Aries</a></li>
+    <li><a href="https://soundtrap.crooney.ca">Soundtrap</a></li>
+  </ul>
+  <span class="footer-domain">vanisle.crooney.ca</span>
 </footer>
 
 <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-    reveals.forEach(el => observer.observe(el));
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => io.observe(el));
 </script>
 
 </body>
